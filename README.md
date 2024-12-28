@@ -1,4 +1,4 @@
-# 🚀 Discord Selfbot
+# 💫 [Celestia](https://socials.lat)
 
 An advanced and feature-rich **Discord Selfbot** built with Python and Discord.py, designed to enhance your Discord experience with powerful commands and utilities.
 
