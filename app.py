@@ -13,6 +13,8 @@ import traceback
 import time
 import platform
 import pytz
+import subprocess
+
 
 def read_config():
     with open('config.json') as config_file:
@@ -105,23 +107,35 @@ async def set_presence():
 async def on_ready():
     """Triggered when the selfbot is ready."""
     try:
-        # Fetch user info to force refresh
         print(f"\nLogged in as {client.user}")
         print(f"--- Selfbot is online ---\n")
 
         # Start the config checker task after bot is ready
         client.loop.create_task(config_checker())
 
-        # Debugging: Check if the bot is logged in
         print(f"Attempting to set presence...")
 
-        # Set the presence after bot is ready
-        await set_presence()
+        # Change the current working directory to the 'core' folder (if needed)
+        os.chdir(os.path.join(os.getcwd(), 'core'))
+
+        # Debugging: Check if we're in the right directory
+        print(f"Current directory: {os.getcwd()}")
+
+        # Run the presence.py script
+        result = subprocess.run(['python', 'core/presence.py'], capture_output=True, text=True)
+
+        # Debugging: Check the output of the subprocess
+        if result.returncode == 0:
+            print("Successfully ran presence.py")
+            print(result.stdout)  # Output of the presence.py script
+        else:
+            print(f"Error running presence.py: {result.stderr}")
+            print(f"Exit code: {result.returncode}")
 
     except Exception as e:
         print(f"Error in on_ready: {e}")
         traceback.print_exc()
-
+        
 @client.event
 async def on_message(message):
     if message.author == client.user:
