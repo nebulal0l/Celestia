@@ -40,7 +40,7 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
     "FOOTER": "socials.lat",
     "DEFAULT_STATUS": "Celestia | Lua, or C++?",
     "PREFIX": "!",
-    "WEBHOOK_URL": "WEBHOOK URL FOR CELESTIA LOGGING",
+    "WEBHOOK_URL": "WEBHOOK FOR LOGGING",
     "_notes": "hai celestia user this config updates after 5 seconds",
     "DEFAULT_EMOJI": "💫"
    }
