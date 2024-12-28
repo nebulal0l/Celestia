@@ -18,7 +18,7 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
 1. Clone the repository:
    ```bash
    git clone https://github.com/nebulal0l/celestia.git
-   cd discord-selfbot
+   cd celestia
    ```
 2. Install dependencies:
    ```bash
