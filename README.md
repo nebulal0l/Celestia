@@ -20,6 +20,13 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
    git clone https://github.com/nebulal0l/Celestia.git
    cd Celestia
    ```
+
+## 🛠️ Installation (No Git)
+1. Download the repository:
+   ```bash
+    Click Code, Then Download Zip
+    Extract and then your done.
+    ```
 2. Install dependencies:
    ```bash
    installall.bat
