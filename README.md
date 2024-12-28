@@ -44,7 +44,7 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
    ```
 
 ## 📚 Commands
-- `!help` - Display available commands.
+- `!cmds` - Display available commands.
 - `!userinfo` - Get information about a user.
 - `!clear {amount}` - Delete messages in bulk.
 - `!status {text}` - Set custom rich presence.
