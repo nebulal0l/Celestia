@@ -14,7 +14,7 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
 - **Rich Presence:** Custom Discord status updates.
 - **Developer Tools:** Inspect message data, user info, and more.
 
-## 🛠️ Installation
+## 🛠️ Installation (Git)
 1. Clone the repository:
    ```bash
    git clone https://github.com/nebulal0l/Celestia.git
