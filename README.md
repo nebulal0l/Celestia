@@ -25,7 +25,7 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
    installall.bat
    ```
    Make sure you have **Python** installed on your system.
-3. Set up your token in `config.json`:
+3. Set up your config in `config.json`:
    ```json
    {
     "TOKEN": "YOUR TOKEN HERE",
