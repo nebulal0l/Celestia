@@ -1,0 +1,10 @@
+{
+    "TOKEN": "YOUR TOKEN HERE",
+    "TITLE": "Hi, Celestia!",
+    "FOOTER": "socials.lat",
+    "DEFAULT_STATUS": "Celestia | Lua, or C++?",
+    "PREFIX": "!",
+    "WEBHOOK_URL": "WEBHOOK URL FOR CELESTIA LOGGING",
+    "_notes": "hai celestia user this config updates after 5 seconds",
+    "DEFAULT_EMOJI": "💫"
+}
