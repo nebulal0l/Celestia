@@ -28,7 +28,14 @@ Using selfbots violates [Discord's Terms of Service](https://discord.com/terms).
 3. Set up your token in `config.json`:
    ```json
    {
-       "token": "YOUR_DISCORD_TOKEN"
+    "TOKEN": "YOUR TOKEN HERE",
+    "TITLE": "Hi, Celestia!",
+    "FOOTER": "socials.lat",
+    "DEFAULT_STATUS": "Celestia | Lua, or C++?",
+    "PREFIX": "!",
+    "WEBHOOK_URL": "WEBHOOK URL FOR CELESTIA LOGGING",
+    "_notes": "hai celestia user this config updates after 5 seconds",
+    "DEFAULT_EMOJI": "💫"
    }
    ```
 4. Run the bot:
