@@ -122,7 +122,7 @@ async def on_ready():
         print(f"Current directory: {os.getcwd()}")
 
         # Run the presence.py script
-        result = subprocess.run(['python', 'core/presence.py'], capture_output=True, text=True)
+        result = subprocess.run(['python', 'presence.py'], capture_output=True, text=True)
 
         # Debugging: Check the output of the subprocess
         if result.returncode == 0:
@@ -162,7 +162,7 @@ async def send_styled(ctx, message, delete_after=10):
     sent_message = await ctx.send(styled_message, delete_after=delete_after)
     return sent_message
 
-def send_log_to_webhook(content, title="Selfbot Log", color=0x0099FF):
+def send_log_to_webhook(content, title="Selfbot Log", color=0x7f03fc):
     payload = {
         "embeds": [
             {
@@ -185,7 +185,7 @@ def send_log_to_webhook(content, title="Selfbot Log", color=0x0099FF):
 @client.event
 async def on_ready():
     print(f'Logged in as {client.user}')
-    send_log_to_webhook(f'You have logged in successfully as {client.user}.', "Selfbot Logged In", color=0x0099FF)
+    send_log_to_webhook(f'You have logged in successfully as {client.user}.', "Selfbot Logged In", color=0x7f03fc)
 
 # Log command usage
 @client.event
@@ -198,7 +198,7 @@ async def on_command(ctx):
 async def on_message(message):
     if client.user.mentioned_in(message):
         content = f'{message.author} pinged you in {message.guild.name if message.guild else "DM"}'
-        send_log_to_webhook(content, title="Selfbot Pinged", color=0x0099FF)
+        send_log_to_webhook(content, title="Selfbot Pinged", color=0x7f03fc)
 
     # Process the command after logging
     await client.process_commands(message)
@@ -259,8 +259,38 @@ async def wordcount(ctx, *, text: str):
     word_count = len(text.split())
     await send_styled(ctx, f"The message contains {word_count} words.")
     await ctx.message.delete()  # Delete ONLY the command message
+afk_status = False
+afk_message = "I'm currently AFK, please leave a message."
 
-
+@client.command()
+async def afk(ctx, status: str):
+    """Enable or disable AFK status."""
+    global afk_status
+    if status.lower() == "enable":
+        afk_status = True
+        await send_styled(ctx, "AFK mode enabled. I'll reply with your custom message when pinged.")
+    elif status.lower() == "disable":
+        afk_status = False
+        await send_styled(ctx, "AFK mode disabled. I'm back online.")
+    else:
+        await send_styled(ctx, "Invalid status. Use 'enable' or 'disable'.")
+@client.command()
+async def afkmessage(ctx, *, message: str):
+    """Set the AFK message."""
+    global afk_message
+    afk_message = message
+    await send_styled(ctx, f"AFK message set to: {afk_message}")
+@client.event
+async def on_message(message):
+    """Reply with custom AFK message when the user is pinged."""
+    if afk_status and message.mentions and client.user in message.mentions:
+        await message.channel.send(f"{message.author.mention} {afk_message}")
+    await client.process_commands(message)
+@client.command()
+async def emojify(ctx, *, text: str):
+    """Convert a message into emoji characters."""
+    emoji_text = " ".join([f":{char.lower()}:" for char in text if char.isalpha()])
+    await send_styled(ctx, emoji_text)
 @client.command()
 async def morse(ctx, *, text: str):
     """Convert text to Morse code"""
@@ -648,7 +678,12 @@ async def time(ctx, timezone: str):
     else:
         await send_styled(ctx, f"Invalid timezone: {timezone}. Please check the name and try again.")
     await ctx.message.delete()  # Delete ONLY the command message
-
+from datetime import datetime
+@client.command()
+async def whattimeisit(ctx):
+    """Displays the current time."""
+    current_time = datetime.now().strftime("%H:%M:%S")
+    await send_styled(ctx, f"The current time is: {current_time}")
 @client.command()
 async def dog(ctx):
     """Get a random dog image"""
